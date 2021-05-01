@@ -1,6 +1,6 @@
 import hashlib, csv, math, os, pickle, subprocess
 
-HEADER="Id,Label,I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20,C21,C22,C23,C24,C25,C26"
+HEADER="Label,I1,I2,I3,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16"
 
 def open_with_first_line_skipped(path, skip=True):
     f = open(path)
@@ -14,7 +14,7 @@ def hashstr(str, nr_bins):
 
 def gen_feats(row):
     feats = []
-    for j in range(1, 14):
+    for j in range(1, 3):
         field = 'I{0}'.format(j)
         value = row[field]
         if value != '':
@@ -25,7 +25,7 @@ def gen_feats(row):
                 value = 'SP'+str(value)
         key = field + '-' + str(value)
         feats.append(key)
-    for j in range(1, 27):
+    for j in range(1, 16):
         field = 'C{0}'.format(j)
         value = row[field]
         key = field + '-' + value
